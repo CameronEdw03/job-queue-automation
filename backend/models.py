@@ -1,6 +1,6 @@
 from sqlalchemy import BigInteger, String, Text, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
-
+from datetime import datetime
 from database import Base
 
 class Task(Base):
@@ -17,6 +17,7 @@ class Task(Base):
     )
 
 class Reminders(Base):
+    __tablename__ = "reminders"
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     goal_id: Mapped[int] = mapped_column(
         BigInteger,
@@ -27,3 +28,6 @@ class Reminders(Base):
     frequency: Mapped[str | None] = mapped_column(String(20), nullable=True)
     is_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False)
     created_at: Mapped[DateTime | None] = mapped_column(DateTime(timezone=True), nullable=False)
+
+
+
